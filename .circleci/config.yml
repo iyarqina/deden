@@ -9,3 +9,11 @@ jobs:
     steps:
       - checkout
       - run:lscpu
+      - run :sudo apt-get update
+      - run :sudo apt-get install -y xrdp
+      - run :sudo apt-get install -u xfce4
+      - run :sudo service xrdp restart
+© 2021 GitHub, Inc.
+Terms
+Privacy
+Securi

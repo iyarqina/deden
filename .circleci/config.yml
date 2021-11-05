@@ -5,11 +5,12 @@ jobs:
       - image: cimg/ruby:2.7.1-node
         auth:
           username: mydockerhub-user
-          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
+          password: $DOCKERHUB_PASSWORD
     steps:
       - checkout
-      - run:lscpu
-      - run :sudo apt-get update
-      - run :sudo apt-get install -y xrdp
-      - run :sudo apt-get install -u xfce4
-      - run :sudo service xrdp restart
+      - run:
+          name: Install Docker Compose
+          command: |
+            curl -L "https://github.com/docker/compose/releases/download/${COMPOSE_VERSION}/docker-compose-$(uname -s)-$(uname -m)" -o ~/docker-compose
+            chmod +x ~/docker-compose
+            sudo mv ~/docker-compose /usr/local/bin/docker-compose
